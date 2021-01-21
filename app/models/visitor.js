@@ -7,7 +7,7 @@ const questionSchema = new Schema({
   guestName: { type: String, required: true },
   mobileNumber: { type: String, required: true },
   personNum: { type: String, required: true },
-  visitTime: { type: String, required: true },
+  visitTime: { type: Number, required: true },
   siteName: { type: String, required: true }
 })
 
