@@ -38,6 +38,24 @@ class VisitorCtl {
     const visitor = await new Visitor(body).save()
     ctx.body = visitor
   }
+  async del(ctx) {
+    ctx.verifyParams({
+      id: { type: 'string', required: true }
+    })
+    try {
+      const data = await Visitor.findByIdAndRemove(ctx.params.id)
+      ctx.body = {
+        code: 200,
+        message: '成功',
+        data: data
+      }
+    } catch (error) {
+      ctx.body = {
+        code: 500,
+        message: '服务错误'
+      }
+    }
+  }
 }
 
 module.exports = new VisitorCtl()
