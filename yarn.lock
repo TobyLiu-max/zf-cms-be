@@ -757,6 +757,11 @@ koa-router@^10.0.0:
     methods "^1.1.2"
     path-to-regexp "^6.1.0"
 
+koa2-cors@^2.0.6:
+  version "2.0.6"
+  resolved "http://r.npm.sankuai.com/koa2-cors/download/koa2-cors-2.0.6.tgz#9ad23df3a0b9bb84530b46f5944f3fb576086554"
+  integrity sha1-mtI986C5u4RTC0b1lE8/tXYIZVQ=
+
 koa@^2.13.1:
   version "2.13.1"
   resolved "http://r.npm.sankuai.com/koa/download/koa-2.13.1.tgz#6275172875b27bcfe1d454356a5b6b9f5a9b1051"
