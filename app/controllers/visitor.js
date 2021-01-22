@@ -39,17 +39,43 @@ class VisitorCtl {
     ctx.body = visitor
   }
   async del(ctx) {
-    ctx.verifyParams({
-      id: { type: 'string', required: true }
-    })
     try {
       const data = await Visitor.findByIdAndRemove(ctx.params.id)
-      ctx.body = {
-        code: 200,
-        message: '成功',
-        data: data
+      if (data) {
+        ctx.body = {
+          code: 200,
+          message: '成功',
+          data: data
+        }
+      } else {
+        ctx.body = {
+          code: 404,
+          message: '访客不存在'
+        }
       }
     } catch (error) {
+      console.log('error', error)
+      ctx.body = {
+        code: 500,
+        message: '服务错误'
+      }
+    }
+  }
+  async update(ctx) {
+    ctx.verifyParams({
+      guestName: { type: 'string', required: false },
+      mobileNumber: { type: 'string', required: false },
+      personNum: { type: 'string', required: false },
+      visitTime: { type: 'string', required: false },
+      siteName: { type: 'string', required: false }
+    })
+    const body = ctx.request.body
+    body.visitTime = body.visitTime ? +body.visitTime : body.visitTime
+    try {
+      const visitor = await Visitor.findByIdAndUpdate(ctx.params.id, body)
+      ctx.body = visitor
+    } catch (error) {
+      console.log('error', error)
       ctx.body = {
         code: 500,
         message: '服务错误'
